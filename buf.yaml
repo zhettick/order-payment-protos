@@ -1,0 +1,11 @@
+version: v1
+name: github.com/zhettick/order-payment-protos
+lint:
+  use:
+    - DEFAULT
+  except:
+    - PACKAGE_DIRECTORY_MATCH
+
+breaking:
+  use:
+    - FILE
