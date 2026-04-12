@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package payment.v1.base;
+
+option go_package = "github.com/zhettick/order-payment-gen/payment/v1/base;base";
+
+message Payment {
+  string id = 1;
+  string order_id = 2;
+  string transaction_id = 3;
+  int64 amount = 4;
+  PaymentStatus status = 5;
+}
+
+enum PaymentStatus {
+  PAYMENT_STATUS_UNSPECIFIED = 0;
+  PAYMENT_STATUS_AUTHORIZED = 1;
+  PAYMENT_STATUS_DECLINED = 2;
+}

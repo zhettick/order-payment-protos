@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package order.v1.base;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/zhettick/order-payment-gen/order/v1/base;base";
+
+message Order {
+  string id = 1;
+  string customer_id = 2;
+  string item_name = 3;
+  int64 amount = 4;
+  OrderStatus status = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+enum OrderStatus {
+  ORDER_STATUS_UNSPECIFIED = 0;
+  ORDER_STATUS_PENDING = 1;
+  ORDER_STATUS_PAID = 2;
+  ORDER_STATUS_FAILED = 3;
+  ORDER_STATUS_CANCELED = 4;
+}

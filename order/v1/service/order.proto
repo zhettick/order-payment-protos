@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package order.v1.service;
+
+import "order/v1/base/order.proto";
+
+option go_package = "github.com/zhettick/order-payment-gen/order/v1/service;service";
+
+service OrderService {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc GetByID(GetByIDRequest) returns (GetByIDResponse);
+  rpc Cancel(CancelRequest) returns (CancelResponse);
+  rpc GetRecent(GetRecentRequest) returns (GetRecentResponse);
+
+  rpc SubscribeToOrderUpdates(SubscribeRequest) returns (stream order.v1.base.Order);
+}
+
+message CreateRequest {
+  string customer_id = 1;
+  string item_name = 2;
+  int64 amount = 3;
+}
+
+message CreateResponse {
+  order.v1.base.Order order = 1;
+}
+
+message GetByIDRequest {
+  string id = 1;
+}
+
+message GetByIDResponse {
+  order.v1.base.Order order = 1;
+}
+
+message CancelRequest {
+  string id = 1;
+}
+
+message CancelResponse {
+  order.v1.base.OrderStatus status = 1;
+}
+
+message GetRecentRequest {
+  int64 limit = 1;
+}
+
+message GetRecentResponse {
+  repeated order.v1.base.Order order = 1; //for returning a list of orders
+}
+
+message SubscribeRequest {
+  string id = 1;
+}
