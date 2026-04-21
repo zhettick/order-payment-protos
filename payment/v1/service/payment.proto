@@ -9,6 +9,7 @@ option go_package = "github.com/zhettick/order-payment-gen/payment/v1/service;se
 service PaymentService {
   rpc Create(CreateRequest) returns (CreateResponse);
   rpc GetByID(GetByIDRequest) returns (GetByIDResponse);
+  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
 }
 
 message CreateRequest {
@@ -26,4 +27,13 @@ message GetByIDRequest {
 
 message GetByIDResponse {
   payment.v1.base.Payment payment = 1;
+}
+
+message ListPaymentsRequest {
+  int64 min_amount = 1;
+  int64 max_amount = 2;
+}
+
+message ListPaymentsResponse {
+  repeated payment.v1.base.Payment payments = 1;
 }
