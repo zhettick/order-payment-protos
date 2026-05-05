@@ -10,6 +10,7 @@ message Payment {
   string transaction_id = 3;
   int64 amount = 4;
   PaymentStatus status = 5;
+  string customer_email = 6;
 }
 
 enum PaymentStatus {
